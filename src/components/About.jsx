@@ -1,42 +1,58 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 const About = () => {
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            },
+            { threshold: 0.15 }
+        );
+        if (sectionRef.current) observer.observe(sectionRef.current);
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <div
             name="about"
             id="about"
-            className="w-full h-full pb-20 md:h-screen md:pb-0 bg-[#1e1e1e] text-gray-300"
+            className="w-full py-24 bg-[#1a1a1a] text-gray-300"
         >
-            <div className="flex flex-col justify-center items-center w-full h-full ">
-                <div className=" py-16 rounded-[30px] shadow-xl border-2 border-lime-600 shadow-green-900 bg-lime-600 flex flex-col justify-center items-center w-4/6">
-                    <div className="max-w-[1000px] w-full grid grid-cols-2 gap-8 mb-4">
-                        <div className="sm:text-right pb-8 pl-4">
-                            <p className="text-4xl font-bold inline border-b-4 text-orange-900 border-yellow-500">
-                                About &#8702;
-                            </p>
-                        </div>
-                        <div></div>
-                    </div>
-                    <div className="max-w-[1000px] w-full grid sm:grid-cols-2 gap-8 px-4">
-                        <div className="sm:text-right text-4xl font-bold font-mono">
+            <div ref={sectionRef} className="fade-in-section flex flex-col justify-center items-center w-full px-4">
+                {/* Heading */}
+                <div className="max-w-[900px] w-full mb-10">
+                    <p className="text-4xl font-bold inline border-b-4 border-yellow-500 text-yellow-500">
+                        About &#8702;
+                    </p>
+                </div>
+
+                {/* Card */}
+                <div className="max-w-[900px] w-full bg-[#232323] border border-yellow-500 rounded-2xl shadow-lg shadow-black/50 p-10">
+                    <div className="grid sm:grid-cols-2 gap-10">
+                        {/* Left */}
+                        <div className="text-3xl font-bold text-white leading-snug">
                             <p>
-                                Hi&nbsp;&#10083; <br /> I'm Abhishek Panigrahi, nice to meet you.
-                                Please take a look around !!
+                                Hi! I&apos;m Abhishek Panigrahi, nice to meet you.
+                                Please take a look around!
                             </p>
                         </div>
-                        <div className="text-gray-900 font-mono text-lg font-semibold">
+                        {/* Right */}
+                        <div className="text-gray-400 text-base leading-relaxed">
                             <p>
-                                {" "}
-                                Currently in 3rd year of my B.Tech, pursuing at VIT, Chennai. <br />
-                                My current CGPA is <span className="font-semibold">8.5</span>.&nbsp;
-                                A newbie software developer with minimum experience in building Responsive and
-                                Scalable Web apps & well-knowledged in UI/UX principles and
-                                practices. <br />
-                                Additionnally, I am having fond in <b>Singing</b> and <b>Travelling</b> around the globe, 
-                                exploring different heritage and culture of indigenous communities.
+                                Software Engineer at Prodapt Solutions working on Generative AI
+                                and Full Stack web applications. Completed graduation in
+                                B.Tech in Computer Science with AI &amp; ML specialization at VIT
+                                Chennai (CGPA: 8.54). I enjoy building responsive, scalable web
+                                apps and intelligent AI-powered solutions. Outside of tech, I love{" "}
+                                <strong className="text-gray-300">singing</strong> and{" "}
+                                <strong className="text-gray-300">travelling</strong> to explore
+                                different cultures.
                             </p>
                         </div>
-                        
                     </div>
                 </div>
             </div>

@@ -2,25 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap');
-@layer base { 
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
     body {
-        @apply font-[Raleway];
+        @apply font-[Raleway] bg-[#1a1a1a];
     }
     li {
-        @apply px-4;
-        @apply cursor-pointer
+        @apply px-4 cursor-pointer;
+    }
+    div[name] {
+        scroll-margin-top: 80px;
     }
 }
-.content-div {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 250px;
+
+/* Fade-in / slide-up animation for sections */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
-.content-div:hover {
-    background-image: linear-gradient(
-        to right,
-        rgba(15, 232, 0, 0.945),
-        hsla(71, 100%, 50%, 0.8)   
-    )!important;
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Project cards */
+.project-card {
+    background: #232323;
+    border: 1px solid #333;
+    border-radius: 12px;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover {
+    border-color: #f0a500;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(240, 165, 0, 0.12);
 }

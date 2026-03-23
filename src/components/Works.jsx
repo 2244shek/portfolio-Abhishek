@@ -1,105 +1,145 @@
-import React from 'react';
-import code from '../assets/code2.png';
-import portfolio_pic from '../assets/portfolio_pic.png';
-import home_page from '../assets/home_page.png';
+import React, { useEffect, useRef } from 'react';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+
+const projects = [
+    {
+        name: 'FeatureSmith',
+        description:
+            'Intelligent feature engineering and selection python package for machine learning competitions and projects.',
+        tech: ['Python', 'Scikit-learn', 'Pandas', 'NumPy'],
+        github: 'https://github.com/2244shek/feature-forge',
+        live: 'https://pypi.org/project/featuresmith/',
+    },
+    {
+        name: 'ToolNet - Website Collection',
+        description:
+            'A collection of useful tools and utilities for students, developers and designers.',
+        tech: ['HTML', 'CSS', 'JavaScript'],
+        github: 'https://github.com/2244shek/Project-01',
+        live: 'https://toolnet.vercel.app/',
+    },
+    {
+        name: 'RAG Form Extractor for Medical Documents',
+        description:
+            'AI-powered system that converts unstructured medical PDFs and images into structured JSON using Google GeminiAPI, RAG model, OCR, and NLP techniques.',
+        tech: ['Python', 'GeminiAPI', 'RAG', 'pytesseract'],
+        github: 'https://github.com/2244shek/RAG_PDF',
+        live: null,
+    },
+    {
+        name: 'MPloyee – Employee Management System',
+        description:
+            'Full-stack MERN application with role-based access control, lazy loading optimization (40% faster load), and real-time dashboards for leave, expense, and timesheet management.',
+        tech: ['ReactJS', 'ExpressJS', 'MongoDB', 'Node.js'],
+        github: 'https://github.com/2244shek/Project_MERN-T218',
+        live: null,
+    },
+    {
+        name: 'Real-Time Sign Language Detection',
+        description:
+            'Real-time sign language recognition system using LSTM neural networks achieving 98.59% accuracy, with OpenCV video pipeline and TensorFlow model inference.',
+        tech: ['Python', 'TensorFlow', 'OpenCV', 'LSTM'],
+        github: 'https://github.com/2244shek/RTSLD---LSTM-Dense-NN',
+        live: null,
+    },
+    // {
+    //     name: 'Portfolio Website',
+    //     description:
+    //         'Responsive personal portfolio built with ReactJS, component-based architecture, and EmailJS API integration. Deployed on Vercel.',
+    //     tech: ['ReactJS', 'CSS3', 'Web3Forms'],
+    //     github: null,
+    //     live: 'https://abhishekpanigrahi-self.vercel.app',
+    // },
+];
+
+const ProjectCard = ({ project, index }) => {
+    const ref = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => { if (entry.isIntersecting) entry.target.classList.add('visible'); },
+            { threshold: 0.15 }
+        );
+        if (ref.current) observer.observe(ref.current);
+        return () => observer.disconnect();
+    }, []);
+
+    return (
+        <div
+            ref={ref}
+            className='fade-in-section project-card p-6 flex flex-col h-full'
+            style={{ transitionDelay: `${index * 0.1}s` }}
+        >
+            <h3 className='text-lg font-bold text-white mb-2'>{project.name}</h3>
+            <p className='text-gray-400 text-sm leading-relaxed flex-grow'>{project.description}</p>
+
+            {/* Tech tags */}
+            <div className='flex flex-wrap gap-2 mt-4'>
+                {project.tech.map((t) => (
+                    <span
+                        key={t}
+                        className='text-xs px-2 py-1 rounded-md bg-[#2e2e2e] text-yellow-400 border border-yellow-500/30'
+                    >
+                        {t}
+                    </span>
+                ))}
+            </div>
+
+            {/* Links */}
+            <div className='flex gap-3 mt-5'>
+                {project.github && (
+                    <a
+                        href={project.github}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='flex items-center gap-2 text-sm px-4 py-2 rounded-md border border-yellow-500 text-yellow-400 hover:bg-yellow-500 hover:text-[#1a1a1a] transition-all duration-200 font-semibold'
+                    >
+                        <FaGithub /> Code Repo
+                    </a>
+                )}
+                {project.live && (
+                    <a
+                        href={project.live}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='flex items-center gap-2 text-sm px-4 py-2 rounded-md bg-yellow-500 text-[#1a1a1a] hover:bg-yellow-400 transition-all duration-200 font-semibold'
+                    >
+                        <FaExternalLinkAlt /> Live Demo
+                    </a>
+                )}
+            </div>
+        </div>
+    );
+};
 
 const Works = () => {
+    const headingRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => { if (entry.isIntersecting) entry.target.classList.add('visible'); },
+            { threshold: 0.2 }
+        );
+        if (headingRef.current) observer.observe(headingRef.current);
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <div name='work' className='w-full md:h-screen text-gray-300 bg-[#1e1e1e]'>
-            <div className='max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full'>
-                <div className='pb-8 w-full flex justify-center items-center flex-col'>
-                    <p className='text-4xl font-bold inline border-b-4 text-yellow-300 border-yellow-500'>
+        <div name='work' className='w-full py-24 bg-[#1a1a1a] text-gray-300'>
+            <div className='max-w-[1000px] mx-auto px-4'>
+                <div ref={headingRef} className='fade-in-section pb-12 flex flex-col items-center'>
+                    <p className='text-4xl font-bold inline border-b-4 text-yellow-500 border-yellow-500'>
                         Work &#8702;
                     </p>
-                    <p className='py-6 text-2xl'>Check out some of my most recent work</p>
+                    <p className='py-4 text-lg text-gray-400 text-center'>
+                        Check out some of my most recent work
+                    </p>
                 </div>
-                {/* Container */}
-                <div className='grid sm:grid-cols-2 md:grid-cols-3 gap-4'>
-                    {/* Grid Item */}
-                    <div
-                        style={{ backgroundImage: `url(${portfolio_pic})` }}
-                        className='shadow-lg shadow-[#040c16] group container rounded-md flex justify-center items-center mx-auto content-div'
-                    >
-                        {/* Hover Effects */}
-                        <div className='opacity-0 group-hover:opacity-100 flex justify-center items-center flex-col'>
-                            <span className=' text-lg font-bold text-gray-800 tracking-wider'>
-                                Portfolio Website
-                            </span>
-                            <p className='text-center text-gray-700'>A Portfolio website built with React.</p>
-                            <div className='pt-8 text-center'>
-                                <a href='/'>
-                                    <button className='text-center rounded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>
-                                        Demo
-                                    </button>
-                                </a>
-                                <a href='/'>
-                                    <button className='text-center rounded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>
-                                        Code
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        style={{ backgroundImage: `url(${home_page})` }}
-                        className='shadow-lg shadow-[#040c16] group container rounded-md flex justify-center items-center mx-auto content-div'
-                    >
-                        {/* Hover Effects */}
-                        <div className='opacity-0 group-hover:opacity-100 flex justify-center items-center flex-col'>
-                            <span className=' text-lg font-bold text-gray-800 tracking-wider'>
-                                Website Collection App
-                            </span>
-                            <p className='text-center text-gray-700'>
-                                A web application built with HTML & CSS(Tailwind) 
-                                having collection of websites and tools used by students.
-                            </p>
-                            <div className='pt-8 text-center'>
-                                <a href='/'>
-                                    <button className='text-center rounded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>
-                                        Demo
-                                    </button>
-                                </a>
-                                <a href='/'>
-                                    <button className='text-center rounded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>
-                                        Code
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        style={{ backgroundImage: `url(${code})` }}
-                        className='shadow-lg shadow-[#040c16] group container rounded-md flex justify-center items-center mx-auto content-div'
-                    >
-                        {/* Hover Effects */}
-                        <div className='opacity-0 group-hover:opacity-100 flex justify-center items-center flex-col'>
-                            <span className=' text-lg font-bold text-gray-800 tracking-wider'>
-                                Final MERN based Project
-                            </span>
-                            <p className='text-center text-gray-700'>
-                                MERN based website solving a problem statement <br />
-                                COMING SOON !!!
-                            </p>
-                            <p className='text-black font-bold text-2xl'>
-                                <br />STAY TUNED !!!
-                            </p>
-                            {/* <div className='pt-8 text-center'>
-                                <a href='/'>
-                                    <button className='text-center rounded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>
-                                        Demo
-                                    </button>
-                                </a>
-                                <a href='/'>
-                                    <button className='text-center rounded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>
-                                        Code
-                                    </button>
-                                </a>
-                            </div> */}
-                        </div>
-                    </div>
-                    
-                    
 
+                <div className='grid sm:grid-cols-2 gap-6'>
+                    {projects.map((project, i) => (
+                        <ProjectCard key={project.name} project={project} index={i} />
+                    ))}
                 </div>
             </div>
         </div>

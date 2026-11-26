@@ -93,7 +93,7 @@ const Navbar = () => {
                         <FaGithub size={28} />
                     </a>
                     <a
-                        href='https://drive.google.com/file/d/1KgDvhXEx7OXkGnunIYDnP8IT6IPVhxkg/view'
+                        href='https://drive.google.com/file/d/18FK9YlwAwt4O81BSC0-Ekrmk0esIbvir/view'
                         target='_blank'
                         rel='noopener noreferrer'
                         aria-label='View Resume'
@@ -145,7 +145,7 @@ const Navbar = () => {
                     <li className='w-[160px] h-[60px] rounded-b-[10px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] focus-within:ml-[-10px] duration-300 bg-[#2a2a2a]'>
                         <a
                             className='flex justify-between items-center w-full text-gray-300 text-xl'
-                            href='https://drive.google.com/file/d/1KgDvhXEx7OXkGnunIYDnP8IT6IPVhxkg/view'
+                            href='https://drive.google.com/file/d/18FK9YlwAwt4O81BSC0-Ekrmk0esIbvir/view'
                             target='_blank'
                             rel='noopener noreferrer'
                             aria-label='View Resume PDF'

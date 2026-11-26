@@ -1,29 +1,52 @@
 import React, { useEffect, useRef } from 'react';
+import { FaAward, FaGraduationCap } from 'react-icons/fa';
 
 const experiences = [
     {
         title: 'Software Engineer',
-        company: 'Prodapt Solutions Pvt. Ltd., Chennai',
+        company: 'Prodapt Solutions, Chennai',
         duration: 'Jul 2025 – Present',
         points: [
-            'Developed Generative AI applications using Autogen framework and LLM integration with FastAPI backend.',
-            'Built responsive front-end interfaces using ReactJS and Microsoft SharePoint Framework (SPFx).',
-            'Implemented RESTful API integration between front-end and AI-powered backend services.',
+            'Managed SD-WAN devices and Virtual Network Functions (VNFs) on NFX devices; configured and pushed VNF configurations and analyzed Kubernetes service logs with network and ops teams to improve service reliability.',
+            'Contributed to Synapt (Prodapt’s internal AI accelerator) by building microservices-based auth flows, SPFx-React UI/UX components, workflow debugging, OpenTelemetry monitoring, and LLM Guardrails for agentic observability.',
+            'Developed enterprise AI applications using Azure OpenAI, LLMs, AutoGen, and FastAPI, delivering production-ready REST APIs and scalable AI integrations.',
+            'Contributed to AgentCraft by implementing and integrating IBM ContextForge to enhance agent orchestration and enterprise AI workflows.',
+            'Gained hands-on exposure to Jenkins CI/CD workflows and DevOps practices, partnering with cross-functional teams and stakeholders to support data infrastructure.',
         ],
     },
     {
         title: 'Software Engineering Intern',
-        company: 'Prodapt Solutions Pvt. Ltd., Chennai',
+        company: 'Prodapt Solutions, Chennai',
         duration: 'Jan 2025 – Jun 2025',
         points: [
-            'Collaborated with cross-functional teams to deliver scalable GenAI solutions for enterprise clients.',
+            'Developed ReactJS/SPFx frontend modules integrated with REST APIs, enabling internal teams to access AI-powered enterprise services and real-time reporting through self-service interfaces.',
+            'Contributed to cross-functional Agile sprints, consistently delivering sprint goals on schedule while reducing manual workflow steps and improving operational efficiency.',
         ],
     },
+];
+
+const education = {
+    degree: 'B.Tech. Computer Science — AI & ML Specialization',
+    institution: 'Vellore Institute of Technology, Chennai',
+    duration: '2021 – 2025',
+    grade: 'CGPA: 8.54/10',
+};
+
+const certifications = [
     {
-        title: 'MERN Full Stack Development Certification',
-        company: 'Ethnus Training Center',
-        duration: 'December 2023',
-        points: [],
+        title: 'Claude Certified Architect – Foundations Certification',
+        issuer: 'Anthropic',
+        date: 'Aug 2026',
+    },
+    {
+        title: 'Won "Most Surprising Solution" — Swipe Scout',
+        issuer: 'Prodapt Organization Level Hackathon (Swipe-based skill ideation platform)',
+        date: 'Mar 2025',
+    },
+    {
+        title: 'AWS Cloud Practitioner Certification',
+        issuer: 'AWS',
+        date: 'Jan 2024',
     },
 ];
 
@@ -113,6 +136,48 @@ const Experience = () => {
                     {experiences.map((exp, i) => (
                         <TimelineCard key={i} exp={exp} index={i} />
                     ))}
+                </div>
+
+                {/* Education & Certifications */}
+                <div className="mt-12 grid md:grid-cols-2 gap-6">
+                    {/* Education */}
+                    <div className="bg-[#242424] border border-[#333] hover:border-yellow-500 transition-colors duration-300 rounded-xl p-6 shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div className="flex items-center gap-2 text-yellow-500 text-sm font-semibold uppercase tracking-widest mb-3">
+                                <FaGraduationCap className="text-lg" />
+                                <span>Education</span>
+                            </div>
+                            <h3 className="text-lg font-bold text-white">{education.degree}</h3>
+                            <p className="text-gray-400 text-sm mt-1">{education.institution}</p>
+                        </div>
+                        <div className="flex items-center justify-between mt-4 pt-4 border-t border-[#333] text-xs font-semibold">
+                            <span className="text-yellow-500 tracking-wider uppercase">{education.duration}</span>
+                            <span className="text-gray-300 bg-[#2e2e2e] px-3 py-1 rounded-md border border-yellow-500/30">
+                                {education.grade}
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* Certifications & Achievements */}
+                    <div className="bg-[#242424] border border-[#333] hover:border-yellow-500 transition-colors duration-300 rounded-xl p-6 shadow-lg">
+                        <div className="flex items-center gap-2 text-yellow-500 text-sm font-semibold uppercase tracking-widest mb-3">
+                            <FaAward className="text-lg" />
+                            <span>Certifications &amp; Achievements</span>
+                        </div>
+                        <ul className="space-y-3">
+                            {certifications.map((cert) => (
+                                <li key={cert.title} className="flex items-start justify-between gap-3 text-sm">
+                                    <div>
+                                        <p className="text-white font-semibold">{cert.title}</p>
+                                        <p className="text-gray-400 text-xs mt-0.5">{cert.issuer}</p>
+                                    </div>
+                                    <span className="text-xs font-semibold text-yellow-500 whitespace-nowrap mt-0.5">
+                                        {cert.date}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

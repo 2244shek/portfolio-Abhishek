@@ -31,23 +31,25 @@ const About = () => {
                 </div>
 
                 {/* Card */}
-                <div className="max-w-[900px] w-full bg-[#232323] border border-yellow-500 rounded-2xl shadow-lg shadow-black/50 p-10">
-                    <div className="grid sm:grid-cols-2 gap-10">
+                <div className="max-w-[900px] w-full bg-[#232323] border border-yellow-500 rounded-2xl shadow-lg shadow-black/50 p-6 sm:p-10">
+                    <div className="grid sm:grid-cols-2 gap-8 sm:gap-10">
                         {/* Left */}
-                        <div className="text-3xl font-bold text-white leading-snug">
+                        <div className="text-2xl sm:text-3xl font-bold text-white leading-snug">
                             <p>
-                                Hi! I&apos;m Abhishek Panigrahi, nice to meet you.
-                                Please take a look around!
+                                Turning complex enterprise workflows into reliable, measurable software.
                             </p>
                         </div>
                         {/* Right */}
-                        <div className="text-gray-400 text-base leading-relaxed">
+                        <div className="text-gray-400 text-base leading-relaxed space-y-4">
                             <p>
-                                Software Engineer at Prodapt Solutions working on Generative AI
-                                and Full Stack web applications. Completed graduation in
-                                B.Tech in Computer Science with AI &amp; ML specialization at VIT
-                                Chennai (CGPA: 8.54). I enjoy building responsive, scalable web
-                                apps and intelligent AI-powered solutions. Outside of tech, I love{" "}
+                                I focus on bridging backend engineering, AI orchestration, and data
+                                modeling—from instrumenting LLM guardrails and OpenTelemetry observability
+                                on internal AI accelerators to managing telecom SD-WAN/NFX infrastructure
+                                and multi-cloud FinOps reporting.
+                            </p>
+                            <p>
+                                Graduated in B.Tech Computer Science (AI &amp; ML) from VIT Chennai
+                                (CGPA: 8.54/10). Outside of work, I love{" "}
                                 <strong className="text-gray-300">singing</strong> and{" "}
                                 <strong className="text-gray-300">travelling</strong> to explore
                                 different cultures.
